@@ -32,7 +32,7 @@ import {
   createClient,
   configureChains,
   mainnet,
-} from 'wagmi-react'
+} from 'wagmi'
 
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
@@ -93,7 +93,7 @@ function App() {
 Now that our connectors are set up, we want users to be able to choose a connector to connect their wallets using `useConnect`.
 
 ```tsx
-import { useConnect } from 'wagmi-react'
+import { useConnect } from 'wagmi'
 
 export function Profile() {
   const { connect, connectors, error, isLoading, pendingConnector } =
@@ -132,7 +132,7 @@ import {
   useDisconnect,
   useEnsAvatar,
   useEnsName,
-} from 'wagmi-react'
+} from 'wagmi'
 
 export function Profile() {
   const { address, connector, isConnected } = useAccount()
