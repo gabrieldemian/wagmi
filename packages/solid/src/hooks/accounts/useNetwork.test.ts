@@ -60,6 +60,7 @@ describe('useNetwork', () => {
       await waitFor(() => expect(result.account().isConnected).toBeTruthy())
 
       expect(result.network()?.chain?.id).toBe(1)
+
       await result.disconnect.disconnectAsync()
       await waitFor(() => expect(result.account().isConnected).toBeFalsy())
 
@@ -74,7 +75,9 @@ describe('useNetwork', () => {
       await waitFor(() => expect(result.account().isConnected).toBeTruthy())
 
       expect(result.network()?.chain?.id).toBe(1)
+
       await switchNetwork({ utils, chainId: () => 5 })
+
       expect(result.network()?.chain?.id).toBe(5)
       expect(result.network()?.chain?.unsupported).toBe(false)
     })
@@ -87,6 +90,7 @@ describe('useNetwork', () => {
       await waitFor(() => expect(result.account().isConnected).toBeTruthy())
 
       expect(result.network()?.chain?.id).toBe(1)
+
       await switchNetwork({ utils, chainId: () => 69 })
       expect(result.network()?.chain?.id).toBe(69)
       expect(result.network()?.chain?.unsupported).toBe(true)

@@ -2,6 +2,7 @@ import { createMutation } from '@tanstack/solid-query'
 import type { SwitchNetworkResult } from '@wagmi/core'
 import { switchNetwork } from '@wagmi/core'
 import type { Accessor } from 'solid-js'
+import { createEffect, createMemo } from 'solid-js'
 
 import { useClient } from '../../context'
 
@@ -74,13 +75,22 @@ export const useSwitchNetwork = (
 
   let switchNetwork
   let switchNetworkAsync
+
+  // client.connector.switchChain is undefined for MockConnector
+  // not all wallets support that feature
   const supportsSwitchChain = !!client.connector?.switchChain
+
+  // workaround for now
+  switchNetwork = switchNetwork_
+  switchNetworkAsync = switchNetworkAsync_
+  // if (props?.throwForSwitchChainNotSupported || supportsSwitchChain()) {
+  //   switchNetwork = switchNetwork_
+  //   switchNetworkAsync = switchNetworkAsync_
+  // }
 
   // @TODO: check while this is never true on a test env
   // if (props?.throwForSwitchChainNotSupported || supportsSwitchChain) {
   // }
-  switchNetwork = switchNetwork_
-  switchNetworkAsync = switchNetworkAsync_
 
   return {
     chains: client.chains ?? [],

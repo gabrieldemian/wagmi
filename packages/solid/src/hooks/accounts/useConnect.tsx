@@ -60,7 +60,7 @@ export const useConnect = (props?: UseConnectArgs & UseConnectConfig) => {
   const connect = (args?: Partial<ConnectArgs>) =>
     mutate({
       chainId: args?.chainId ?? props?.chainId,
-      connector: args?.connector ?? props?.connector ?? client.connectors[0],
+      connector: args?.connector ?? (props?.connector || client.connectors[0]),
     })
 
   const connectAsync = (args?: Partial<ConnectArgs>) => {

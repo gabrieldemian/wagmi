@@ -3,7 +3,7 @@ import type { FetchSignerResult } from '@wagmi/core'
 import { fetchSigner } from '@wagmi/core'
 import type { Signer } from 'ethers'
 import type { Accessor } from 'solid-js'
-import { createEffect } from 'solid-js'
+import { createEffect, createMemo } from 'solid-js'
 
 import type { QueryConfig, QueryFunctionArgs } from '../../types'
 import { useAccount } from './useAccount'
@@ -32,6 +32,7 @@ function queryFn<TSigner extends Signer>({
 
 export function useSigner<TSigner extends Signer>(props?: UseSignerConfig) {
   const acc = useAccount()
+  const isEnabled = createMemo(() => !!acc().connector)
 
   const signerQuery = createQuery<
     FetchSignerResult<TSigner>,
@@ -40,7 +41,7 @@ export function useSigner<TSigner extends Signer>(props?: UseSignerConfig) {
     () => ReturnType<typeof queryKey>
   >(() => queryKey({ chainId: props?.chainId }), queryFn, {
     get enabled() {
-      return Boolean(acc().connector)
+      return isEnabled()
     },
     ...{
       cacheTime: 0,

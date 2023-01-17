@@ -12,6 +12,8 @@ describe('useBalance', () => {
   it('mounts', async () => {
     const { result } = renderHook(() =>
       useBalance({
+        // this will fix all the isStale
+        // staleTime: Infinity,
         address,
       }),
     )
