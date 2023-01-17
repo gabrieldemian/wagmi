@@ -14,12 +14,12 @@ export type ConnectArgs = {
 export type UseConnectArgs = Partial<ConnectArgs>
 export type UseConnectConfig = MutationConfig<ConnectResult, Error, ConnectArgs>
 
-export const mutationKey = (args: UseConnectArgs) =>
+export const mutationKey = (args: () => UseConnectArgs) =>
   [
     {
       entity: 'connect',
-      chainId: args?.chainId?.(),
-      connector: args.connector,
+      chainId: args().chainId?.(),
+      connector: args().connector,
     },
   ] as const
 
@@ -44,10 +44,10 @@ export const useConnect = (props?: UseConnectArgs & UseConnectConfig) => {
     status,
     variables,
   } = createMutation(
-    mutationKey({
+    mutationKey(() => ({
       chainId: props?.chainId,
       connector: props?.connector,
-    }),
+    })),
     mutationFn,
     {
       onError: props?.onError,
