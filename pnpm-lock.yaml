@@ -257,6 +257,7 @@ importers:
       solid-js: ^1.6.6
       typescript: ^4.9.3
       vite-plugin-solid: ^2.5.0
+      zustand: ^4.3.1
     dependencies:
       '@coinbase/wallet-sdk': 3.6.3
       '@tanstack/query-sync-storage-persister': 4.20.9
@@ -265,6 +266,7 @@ importers:
       '@walletconnect/ethereum-provider': 1.8.0
       abitype: 0.2.5_typescript@4.9.4
       solid-js: 1.6.8
+      zustand: 4.3.1
     devDependencies:
       '@solidjs/testing-library': 0.5.2_solid-js@1.6.8
       '@typescript-eslint/parser': 5.48.0_typescript@4.9.4

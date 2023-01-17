@@ -22,6 +22,6 @@ export default defineConfig({
   },
   optimizeDeps: {
     // Required because it crashes if we optimize tanstack solid-query
-    exclude: ['@tanstack/solid-query'],
+    exclude: ['@tanstack/solid-query', 'zustand/vanilla'],
   },
 })
